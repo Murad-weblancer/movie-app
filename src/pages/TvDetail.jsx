@@ -1,33 +1,32 @@
 import React from "react";
-import { Navigate, useParams } from "react-router-dom";
-import {
-  useGetMovieDetailsQuery,
-  useGetMovieVideosQuery,
-  useGetRecomendedMoiveQuery,
-  useGetSimilarMoiveQuery,
-} from "../store/services/movieApi";
-import YouTube from "react-youtube";
-import { Movies } from "../components/Movies";
 import { useSelector } from "react-redux";
+import { Navigate, useParams } from "react-router-dom";
+import YouTube from "react-youtube";
+import { Show } from "../components/Showes/Show";
+import { Showes } from "../components/Showes/Showes";
+import {
+  useGetRecomendationTvQuery,
+  useGetSimilarTvQuery,
+  useGetTvDetailsQuery,
+  useGetTvVideosQuery,
+} from "../store/services/movieApi";
 
-export const MovieDetail = () => {
-  const { movieid } = useParams();
-  const { data: detail, isLoading: isDetal } = useGetMovieDetailsQuery({
-    movieid,
+export const TvDetail = () => {
+  const { detailid } = useParams();
+  const { data: detail, isLoading: isDetail } = useGetTvDetailsQuery({
+    detailid,
   });
-  const { data: video, isLoading: isVideo } = useGetMovieVideosQuery({
-    movieid,
+  const { data: video, isLoading: isVideo } = useGetTvVideosQuery({ detailid });
+  const { data: similar, isLoading: isSimilar } = useGetSimilarTvQuery({
+    detailid,
+  });
+  const { data: rec, isLoading: isRec } = useGetRecomendationTvQuery({
+    detailid,
   });
   const trailer = video?.results.find((el) => el.type === "Trailer");
-  const { data: similar, isLoading: isSimilar } = useGetSimilarMoiveQuery({
-    movieid,
-  });
-  const { data: rec, isLoading: isRec } = useGetRecomendedMoiveQuery({
-    movieid,
-  });
   const { user } = useSelector((state) => state.auth);
 
-  if (isDetal || isVideo || isSimilar || isRec)
+  if (isDetail || isVideo || isSimilar || isRec)
     return (
       <div className="loading">
         <div className="loading-text">
@@ -41,9 +40,7 @@ export const MovieDetail = () => {
         </div>
       </div>
     );
-  if (!user) {
-    return <Navigate to="/" />;
-  }
+  if (!user) return <Navigate to={"/"} />;
   console.log(detail);
   return (
     <>
@@ -53,17 +50,21 @@ export const MovieDetail = () => {
         </div>
         <div className=" md:w-[45%] md:mt-0 mt-5 text-white flex flex-col">
           <h1 className="text-gray-500 font-bold">
-            Title: <span className="text-gray-300">{detail?.title}</span>
+            Title: <span className="text-gray-300">{detail?.name}</span>
           </h1>
           <span className="text-gray-500 font-bold">
             Status: <span className="text-gray-300"> {detail?.status} </span>{" "}
           </span>
           <span className="text-gray-500 font-bold">
-            Runtime: <span className="text-gray-300"> {detail?.runtime} </span>{" "}
+            Runtime:{" "}
+            <span className="text-gray-300">
+              {" "}
+              {detail?.episode_run_time[0]}{" "}
+            </span>{" "}
           </span>
           <span className="text-gray-500 font-bold">
             Release Date:{" "}
-            <span className="text-gray-300"> {detail?.release_date} </span>{" "}
+            <span className="text-gray-300"> {detail?.first_air_date} </span>{" "}
           </span>
           <span className="text-gray-500 font-bold">
             Country:{" "}
@@ -100,8 +101,8 @@ export const MovieDetail = () => {
           </span>
         </div>
       </div>
-      <Movies rowId={"6"} data={similar} title={"Similar"} />
-      <Movies rowId={"7"} data={rec} title={"Recommendations"} />
+      <Showes rowId={"6"} data={similar} title={"Similar"} />
+      <Showes rowId={"7"} data={rec} title={"Recommendations"} />
     </>
   );
 };

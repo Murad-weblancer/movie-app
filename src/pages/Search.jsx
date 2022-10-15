@@ -1,11 +1,14 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Navigate, useParams } from "react-router-dom";
 import { Movies } from "../components/Movies";
 import { useGetSearchMoiveQuery } from "../store/services/movieApi";
 
 export const Search = () => {
   const { searchid } = useParams();
   const { data, isLoading } = useGetSearchMoiveQuery({ searchid });
+  const { user } = useSelector((state) => state.auth);
+
   if (isLoading)
     return (
       <div className="loading">
@@ -20,6 +23,8 @@ export const Search = () => {
         </div>
       </div>
     );
+    if (!user) return <Navigate to={"/"} />;
+
   return (
     <div className="mt-20">
       <Movies rowId={"5"} data={data} title={searchid} />

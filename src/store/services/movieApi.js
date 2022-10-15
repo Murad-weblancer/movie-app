@@ -40,6 +40,45 @@ export const movieApi = createApi({
       query: ({ movieid }) =>
         `/movie/${movieid}/recommendations?api_key=bec864af9a06322a8a7b75992c118d69`,
     }),
+    getTvPopular: builder.query({
+      query: () => "/tv/popular?api_key=bec864af9a06322a8a7b75992c118d69",
+    }),
+    getTvTopRated: builder.query({
+      query: () => "/tv/top_rated?api_key=bec864af9a06322a8a7b75992c118d69",
+    }),
+    getTvOnTheAir: builder.query({
+      query: () => "/tv/on_the_air?api_key=bec864af9a06322a8a7b75992c118d69",
+    }),
+    getTvAiringToday: builder.query({
+      query: () => "/tv/airing_today?api_key=bec864af9a06322a8a7b75992c118d69",
+    }),
+    getTvSearch: builder.query({
+      query: ({ tvsearchid, genres }) =>
+        `/search/tv?api_key=bec864af9a06322a8a7b75992c118d69&query=${
+          tvsearchid || genres
+        }`,
+    }),
+    getGenreTv: builder.query({
+      query: () => "/genre/tv/list?api_key=bec864af9a06322a8a7b75992c118d69",
+    }),
+    getTvVideos: builder.query({
+      query: ({ videoid, detailid }) =>
+        `/tv/${
+          videoid || detailid
+        }/videos?api_key=bec864af9a06322a8a7b75992c118d69`,
+    }),
+    getTvDetails: builder.query({
+      query: ({ detailid }) =>
+        `/tv/${detailid}?api_key=bec864af9a06322a8a7b75992c118d69`,
+    }),
+    getSimilarTv: builder.query({
+      query: ({ detailid }) =>
+        `/tv/${detailid}/similar?api_key=bec864af9a06322a8a7b75992c118d69`,
+    }),
+    getRecomendationTv: builder.query({
+      query: ({ detailid }) =>
+        `/tv/${detailid}/recommendations?api_key=bec864af9a06322a8a7b75992c118d69`,
+    }),
   }),
 });
 
@@ -53,4 +92,14 @@ export const {
   useGetMovieDetailsQuery,
   useGetSimilarMoiveQuery,
   useGetRecomendedMoiveQuery,
+  useGetTvPopularQuery,
+  useGetTvTopRatedQuery,
+  useGetTvOnTheAirQuery,
+  useGetTvAiringTodayQuery,
+  useGetTvSearchQuery,
+  useGetGenreTvQuery,
+  useGetTvVideosQuery,
+  useGetTvDetailsQuery,
+  useGetSimilarTvQuery,
+  useGetRecomendationTvQuery,
 } = movieApi;

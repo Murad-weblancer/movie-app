@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { removeUser } from "../store/slices/authMovie";
-import {FaPowerOff} from 'react-icons/fa'
+import { FaPowerOff } from "react-icons/fa";
 export const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -24,8 +24,19 @@ export const Navbar = () => {
           HDTRAILER
         </h1>
       </Link>
-      <div>
-        {user ? (
+      {user ? (
+        <>
+          <div>
+            <Link to={"/"} className="text-white text-[16px]  navbar-auth ">
+              Movies
+            </Link>
+            <Link to={"/showes"} className="text-white text-[16px]  navbar-auth ml-3">
+              Tv Showes
+            </Link>
+            <Link to={"/"} className="text-white text-[16px]  navbar-auth ml-3">
+              Persons
+            </Link>
+          </div>
           <div>
             <button
               className="text-white text-[16px]  navbar-auth"
@@ -34,21 +45,21 @@ export const Navbar = () => {
               <FaPowerOff className="hover:text-red-600 sm:text-xl" />
             </button>
           </div>
-        ) : (
-          <>
-            <Link to="/signin">
-              <button className="text-white text-[16px]  navbar-auth">
-                Sign In
-              </button>
-            </Link>
-            <Link to="/signup">
-              <button className="text-white text-[16px] ml-3  sm:px-6 sm:py-2 px-4 py-1 bg-red-600 rounded navbar-auth ">
-                Sign Up
-              </button>
-            </Link>
-          </>
-        )}
-      </div>
+        </>
+      ) : (
+        <div>
+          <Link to="/signin">
+            <button className="text-white text-[16px]  navbar-auth">
+              Sign In
+            </button>
+          </Link>
+          <Link to="/signup">
+            <button className="text-white text-[16px] ml-3  sm:px-6 sm:py-2 px-4 py-1 bg-red-600 rounded navbar-auth ">
+              Sign Up
+            </button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

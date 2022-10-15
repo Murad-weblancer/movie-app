@@ -1,13 +1,12 @@
 import React from "react";
-import { Navigate, useParams } from "react-router-dom";
-import { useGetMovieVideosQuery } from "../store/services/movieApi";
-import YouTube from "react-youtube";
 import { useSelector } from "react-redux";
+import { Navigate, useParams } from "react-router-dom";
+import { Showes } from "../components/Showes/Showes";
+import { useGetTvSearchQuery } from "../store/services/movieApi";
 
-export const MainVideo = () => {
-  const { videoid } = useParams();
-  const { data, isLoading } = useGetMovieVideosQuery({ videoid });
-  const trailer = data?.results.find((el) => el.type === "Trailer");
+export const TvSearch = () => {
+  const { tvsearchid } = useParams();
+  const { data, isLoading } = useGetTvSearchQuery({ tvsearchid });
   const { user } = useSelector((state) => state.auth);
 
   if (isLoading)
@@ -26,9 +25,10 @@ export const MainVideo = () => {
     );
   if (!user) return <Navigate to={"/"} />;
 
+  console.log(tvsearchid);
   return (
-    <div className="w-full h-screen relative z-10">
-      <YouTube videoId={trailer?.key} className="w-full h-full " />
+    <div className="mt-20">
+      <Showes rowId={"5"} data={data} title={tvsearchid} />
     </div>
   );
 };

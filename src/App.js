@@ -10,6 +10,10 @@ import { curenntlyUser } from "./store/slices/authMovie";
 import { MainVideo } from "./pages/MainVideo";
 import { Search } from "./pages/Search";
 import { MovieDetail } from "./pages/MovieDetail";
+import { TvShowes } from "./pages/TvShowes";
+import { TvSearch } from "./pages/TvSearch";
+import { TvVideo } from "./pages/TvVideo";
+import { TvDetail } from "./pages/TvDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +36,10 @@ function App() {
         <Route path="/mainvideo/:videoid" element={<MainVideo />} />
         <Route path="/search/:searchid" element={<Search />} />
         <Route path="/movie/:movieid" element={<MovieDetail />} />
+        <Route path="/showes" element={<TvShowes />} />
+        <Route path="/showes/:tvsearchid" element={<TvSearch />} />
+        <Route path="/showes/video/:videoid" element={<TvVideo />} />
+        <Route path="/showes/detail/:detailid" element={<TvDetail />} />
       </Routes>
     </div>
   );
