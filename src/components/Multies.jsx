@@ -1,8 +1,8 @@
 import React from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { Movie } from "./Movie";
+import { Multi } from "./Multi";
 
-export const Movies = ({ data, title, rowId }) => {
+export const Multies = ({ data, title, rowId }) => {
   const slideLeft = () => {
     var slider = document.getElementById("slider" + rowId);
     slider.scrollLeft = slider.scrollLeft - 500;
@@ -25,7 +25,7 @@ export const Movies = ({ data, title, rowId }) => {
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
         >
           {data?.results.map((item) => (
-            <Movie key={item.id} item={item} />
+            <Multi key={item.id} item={item} />
           ))}
         </div>
         <MdChevronRight

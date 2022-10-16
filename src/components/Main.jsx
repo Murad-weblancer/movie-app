@@ -15,10 +15,14 @@ export const Main = () => {
         <h1 className="text-3xl md:text-6xl sm:text-4xl font-bold md:w-[700px] text-center my-5">
           Unlimited movies, TV shows, and more.
         </h1>
-        <span className="sm:text-2xl text-center">Watch anywhere. Cancel anytime.</span>
-        <button className="bg-red-600 sm:px-12 sm:py-3 px-9 py-3  sm:text-3xl text-xl mt-5 rounded">
-          <Link to={"/signin"}>Sign In</Link>
-        </button>
+        <span className="sm:text-2xl text-center">
+          Watch anywhere. Cancel anytime.
+        </span>
+        <Link to={"/signin"}>
+          <button className="bg-red-600 sm:px-12 sm:py-3 px-9 py-3  sm:text-3xl text-xl mt-5 rounded">
+            Sign In
+          </button>
+        </Link>
       </div>
     </div>
   );

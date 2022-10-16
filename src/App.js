@@ -14,6 +14,7 @@ import { TvShowes } from "./pages/TvShowes";
 import { TvSearch } from "./pages/TvSearch";
 import { TvVideo } from "./pages/TvVideo";
 import { TvDetail } from "./pages/TvDetail";
+import { MultiSearch } from "./pages/MultiSearch";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function App() {
         <Route path="/showes/:tvsearchid" element={<TvSearch />} />
         <Route path="/showes/video/:videoid" element={<TvVideo />} />
         <Route path="/showes/detail/:detailid" element={<TvDetail />} />
+        <Route path="/multi/:searchid" element={<MultiSearch />} />
       </Routes>
     </div>
   );

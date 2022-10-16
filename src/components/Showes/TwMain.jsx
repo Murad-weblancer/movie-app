@@ -20,7 +20,6 @@ export const TwMain = () => {
         </div>
       </div>
     );
-  console.log(data);
   return (
     <div className="w-full h-screen relative text-white">
       <div className="w-full h-full">
@@ -30,7 +29,7 @@ export const TwMain = () => {
           alt={tvshowes?.original_name}
         />
       </div>
-      <div className="absolute w-full h-full top-0 bg-black/40" />
+      <div className="absolute w-full h-full top-0 bg-black/60" />
       <div className="absolute top-[35%] left-[3%]">
         <h1 className="text-3xl md:text-5xl font-bold">
           {" "}
@@ -42,7 +41,7 @@ export const TwMain = () => {
               Play
             </button>
           </Link>
-          <Link>
+          <Link to={`/showes/detail/${tvshowes?.id}`}>
             <button className="border  text-white border-gray-300 py-2 px-5 ml-4">
               Read more
             </button>

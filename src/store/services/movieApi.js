@@ -79,6 +79,13 @@ export const movieApi = createApi({
       query: ({ detailid }) =>
         `/tv/${detailid}/recommendations?api_key=bec864af9a06322a8a7b75992c118d69`,
     }),
+    getPopularPeople: builder.query({
+      query: () => "/person/popular?api_key=bec864af9a06322a8a7b75992c118d69",
+    }),
+    getMultiSearch: builder.query({
+      query: ({ searchid }) =>
+        `/search/multi?api_key=bec864af9a06322a8a7b75992c118d69&query=${searchid}`,
+    }),
   }),
 });
 
@@ -102,4 +109,6 @@ export const {
   useGetTvDetailsQuery,
   useGetSimilarTvQuery,
   useGetRecomendationTvQuery,
+  useGetPopularPeopleQuery,
+  useGetMultiSearchQuery,
 } = movieApi;

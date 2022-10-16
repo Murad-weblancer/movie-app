@@ -36,16 +36,18 @@ export const TvShowes = () => {
     );
   if (!user) return <Navigate to={"/"} />;
   return (
-    <div className="px-2">
+    <>
       <TwMain />
-      <div className="flex items-center justify-between flex-wrap mt-5">
-        <TvSearchBar />
-        <TvGenre />
+      <div className="px-2">
+        <div className="flex items-center justify-between flex-wrap mt-5">
+          <TvSearchBar />
+          <TvGenre />
+        </div>
+        <Showes rowId={"1"} data={popular} title={"Popular"} />
+        <Showes rowId={"2"} data={rated} title={"Top Rated"} />
+        <Showes rowId={"3"} data={airning} title={"Tv Airing Today"} />
+        <Showes rowId={"4"} data={air} title={"Tv On The Air"} />
       </div>
-      <Showes rowId={"1"} data={popular} title={"Popular"} />
-      <Showes rowId={"2"} data={rated} title={"Top Rated"} />
-      <Showes rowId={"3"} data={airning} title={"Tv Airing Today"} />
-      <Showes rowId={"4"} data={air} title={"Tv On The Air"} />
-    </div>
+    </>
   );
 };

@@ -28,7 +28,7 @@ export const MainLoged = () => {
           alt={movie?.title}
         />
       </div>
-      <div className="absolute w-full h-full top-0 bg-black/40" />
+      <div className="absolute w-full h-full top-0 bg-black/60" />
       <div className="absolute top-[35%] left-[3%]">
         <h1 className="text-3xl md:text-5xl font-bold"> {movie?.title}</h1>
         <div className="my-4">
